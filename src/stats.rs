@@ -71,3 +71,22 @@ impl TimeOutput for u64 {
         format!("{}:{:02}:{:02}", hours, minutes, seconds)
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::TimeOutput;
+
+    #[test]
+    fn as_time_format() {
+        let pairs = vec![
+            (30, "0:00:30"),
+            (1, "0:00:01"),
+            (100, "0:01:40"),
+            (3732, "1:02:12"),
+        ];
+
+        pairs
+            .iter()
+            .for_each(|(value, expect)| assert_eq!((*value).as_time(), *expect));
+    }
+}
