@@ -13,26 +13,26 @@ impl Args {
             .arg(Arg::with_name("infile").help("read from a file instead of stdin"))
             .arg(
                 Arg::with_name("outfile")
-                .short("o")
-                .long("outfile")
-                .takes_value(true)
-                .help("Write output to a file instead of s")
+                    .short("o")
+                    .long("outfile")
+                    .takes_value(true)
+                    .help("Write output to a file instead of s"),
             )
-            .arg(Arg::with_name("silent")
-                .short("s")
-                .long("silent")
-            ).get_matches();
+            .arg(Arg::with_name("silent").short("s").long("silent"))
+            .get_matches();
 
         let infile = matches.value_of("infile").unwrap_or_default().to_string();
         let outfile = matches.value_of("outfile").unwrap_or_default().to_string();
-        let silent = if matches.is_present("silent") { true } else {
+        let silent = if matches.is_present("silent") {
+            true
+        } else {
             !env::var("PV_SILENT").unwrap_or_default().is_empty()
         };
 
         Self {
             infile,
             outfile,
-            silent
+            silent,
         }
     }
 }
