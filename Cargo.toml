@@ -7,3 +7,4 @@ edition = "2021"
 
 [dependencies]
 clap = "2.3.33"
+crossbeam = "0.7.3"
